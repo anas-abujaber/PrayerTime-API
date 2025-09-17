@@ -1,5 +1,8 @@
 # 🕌 Prayer Times Web App 
 
+## 📸 Here's a preview of the expected UI:
+![UI Preview](./public/ui-preview.png)
+
 ## 🎯 Objective
 Build a single-page Prayer Times Web App that fetches Islamic prayer times using the Aladhan API. The app should let users select a continent, then a country, then a city, and display the 5 daily prayers in a clean table. It must include a live countdown timer for the next prayer (HH:MM:SS), support multiple calculation methods, and handle errors gracefully. Use modern JavaScript (ES6 modules) and clean architecture.
 
