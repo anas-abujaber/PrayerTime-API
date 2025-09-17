@@ -1,0 +1,118 @@
+body {
+  background-color: #0a0f18;
+  line-height: 1.6;
+  color: white;
+}
+
+.container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+/* ====== header ====== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.header .title {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.reset-btn {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.reset-btn:hover {
+  background: #c0392b;
+}
+
+/* ====== controls ====== */
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 2fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.select {
+  display: flex;
+  flex-direction: column;
+}
+
+.select label {
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.select select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+/* ====== next prayer ====== */
+.next-card {
+  background: #1a3e28;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+#text-next-prayer {
+  display: block;
+  margin-bottom: 0.6rem;
+  color: green;
+  font-size: 1.2rem;
+}
+
+#next-prayer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#name-prayer {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+}
+
+#time-prayer {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* ====== table ====== */
+.table {
+  border-radius: 12px;
+  border: 1px solid white;
+  overflow: hidden;
+}
+
+.table .thead,
+.table .row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.table .thead {
+  background-color: #1b2331;
+  font-weight: bold;
+}
+
+.table .row:last-child {
+  border-bottom: none;
+}

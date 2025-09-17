@@ -1,1 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles.css" />
+    <title>Prayer Times</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- header app  -->
+      <div class="header">
+        <div class="title">Prayer Times <span>🕌</span></div>
+        <button class="reset-btn" type="button">إعادة</button>
+      </div>
 
+      <!-- controls section -->
+      <section class="controls">
+        <!-- select continent  -->
+        <div class="select">
+          <label for="continent">القارة</label>
+          <select id="continent" name="continent">
+            <option value="" selected>اختر...</option>
+            <option value="africa">أفريقيا</option>
+            <option value="asia">الأمريكيتان</option>
+            <option value="europe">آسيا</option>
+            <option value="americas">أوروبا</option>
+            <option value="oceania">أوقيانوسيا</option>
+          </select>
+        </div>
+
+        <!--select country-->
+        <div class="select">
+          <label for="country">الدولة</label>
+          <select id="country" name="country" disabled>
+            <option value="" selected>اختر...</option>
+          </select>
+        </div>
+
+        <!--select city-->
+        <div class="select">
+          <label for="city">المدينة</label>
+          <select id="city" name="city"  disabled>
+            <option value="">—</option>
+          </select>
+        </div>
+
+        <!--select method-->
+        <div class="select">
+          <label for="method">طريقة الحساب</label>
+          <select id="method" name="method" ></select>
+        </div>
+      </section>
+
+      <!-- Next prayer -->
+      <section class="next-card">
+        <strong id="text-next-prayer">الصلاة التالية</strong>
+        <div id="next-prayer">
+          <div id="prayer">
+            <span id="name-prayer">الفجر</span>
+            <span id="time-prayer">04:48</span>
+          </div>
+          <div id="countdown">
+            <span>1:59:10</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Table -->
+      <section class="table">
+        <div class="thead">
+          <div>الصلاة</div>
+          <div>الوقت</div>
+        </div>
+        <div class="tbody">
+          <div class="row">
+            <div>الفجر</div>
+            <div id="time-fajr">-</div>
+          </div>
+          <div class="row">
+            <div>الظهر</div>
+            <div id="time-dhuhr">-</div>
+          </div>
+          <div class="row">
+            <div>العصر</div>
+            <div id="time-asr">-</div>
+          </div>
+          <div class="row">
+            <div>المغرب</div>
+            <div id="time-maghrib">-</div>
+          </div>
+          <div class="row">
+            <div>العشاء</div>
+            <div id="time-isha">-</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
