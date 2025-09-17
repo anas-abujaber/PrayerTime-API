@@ -9,7 +9,6 @@ prayer-times-app/
 │  ├─ app.js              ← Core logic: event orchestration, state, countdown timer
 │  ├─ config.js           ← Centralized constants & API endpoints (prayer list, storage keys, base URLs)
 │  ├─ storage.js          ← LocalStorage wrapper (get/set/del/clear with safe JSON )
-│  ├─ ui.js               ← DOM manipulation only (populate selects, render table, update banner & status)
 │  └─ styles.css          ← Styling and responsive layout for desktop & mobile
 ├─ .gitignore             ← Git ignored files and folders
 ├─ index.html             ← Main HTML file (static DOM: selectors, table, banner, reset)
