@@ -1,7 +1,6 @@
 import { getCities, getCountries, getMethods, getPrayerTimes } from "./api.js";
 import { ui } from "./ui.js";
 
-
 async function loadCountries(continent) {
   try {
     ui.setDisabled(ui.els.country, true);
@@ -53,9 +52,12 @@ async function loadPrayerTimes() {
     const country = ui.els.country.value;
     const method = ui.els.method.value;
 
-    console.log({ city, country, method });
-
     const res = await getPrayerTimes({ city, country, method });
+    const times = res?.data?.timings;
+    if (!times) throw new Error("No prayer times found");
+
+    ui.setTime(times.Fajr, times.Dhuhr, times.Asr, times.Maghrib, times.Isha);
+
     console.log("Prayer Times:", res.data.timings);
   } catch (err) {
     console.error("خطأ في جلب أوقات الصلاة:", err);

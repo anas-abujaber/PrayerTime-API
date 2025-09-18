@@ -4,6 +4,14 @@ const els = {
   country: document.getElementById("country"),
   city: document.getElementById("city"),
   method: document.getElementById("method"),
+
+  prayer: {
+    fajr: document.getElementById("time-fajr"),
+    dhuhr: document.getElementById("time-dhuhr"),
+    asr: document.getElementById("time-asr"),
+    maghrib: document.getElementById("time-maghrib"),
+    isha: document.getElementById("time-isha"),
+  },
 };
 
 function setOptions(selectEl, items, placeholder = "اختر...") {
@@ -44,7 +52,14 @@ function setDisabled(selectEl, disabled) {
   selectEl.disabled = !disabled;
 }
 
-// event 
+function setTime(fajr, dhuhr, asr, maghrib, isha) {
+  els.prayer.fajr.textContent = fajr ?? "--";
+  els.prayer.dhuhr.textContent = dhuhr ?? "--";
+  els.prayer.asr.textContent = asr ?? "--";
+  els.prayer.maghrib.textContent = maghrib ?? "--";
+  els.prayer.isha.textContent = isha ?? "--";
+}
+// event
 function onContinentChange(handler) {
   els.continent.addEventListener("change", (e) => handler(e.target.value));
 }
@@ -64,6 +79,7 @@ export const ui = {
   setMethods,
   setMessage,
   setDisabled,
+  setTime,
   onContinentChange,
   onCountryChange,
   onCityChange,
