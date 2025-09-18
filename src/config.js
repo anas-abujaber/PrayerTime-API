@@ -9,12 +9,11 @@ export const REGIONS = [
 export const MAIN_PRAYERS = ["الفجر", "الظهر", "العصر", "المغرب", "العشاء"];
 
 export const ENDPOINTS = {
-  countriesByRegion: (region) =>
-    `https://restcountries.com/v3.1/region/${region}`,
+  countries: "https://restcountries.com/v3.1/region/",
 
-  citiesByCountry: "https://countriesnow.space/api/v0.1/countries/cities",
+  cities: "https://countriesnow.space/api/v0.1/countries/cities",
 
   methods: "https://api.aladhan.com/v1/methods",
 
-  timingsByCity: "https://api.aladhan.com/v1/timingsByCity",
+  prayerTimes: "https://api.aladhan.com/v1/timingsByCity",
 };
