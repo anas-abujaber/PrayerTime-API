@@ -5,7 +5,9 @@ prayer-times-app/
 ├─ node_modules/          ← Installed dependencies 
 ├─ public/                ← Static assets (images, icons, etc.)
 ├─ src/
-│  ├─ api.js              ← Handles all API requests (REST Countries, CountriesNow, Aladhan) + caching logic
+│  ├─ api.js              ← Handles all API requests (REST Countries, CountriesNow, Aladhan) + caching 
+│  ├─ ui.js               ← UI + DOM helpers (selects, table, next prayer banner)
+│  ├─ utils.js            ← General utilities (fetch, date, helpers)
 │  ├─ app.js              ← Core logic: event orchestration, state, countdown timer
 │  ├─ config.js           ← Centralized constants & API endpoints (prayer list, storage keys, base URLs)
 │  ├─ storage.js          ← LocalStorage wrapper (get/set/del/clear with safe JSON )
