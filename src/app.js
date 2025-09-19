@@ -1,17 +1,8 @@
 import { getCities, getCountries, getMethods, getPrayerTimes } from "./api.js";
 import { ui } from "./ui.js";
 import Storage from "./storage.js";
-
 const storage = new Storage();
-function loadStoredSelections() {
-  const data = storage.load();
-  if (!data) return;
 
-  if (data.continent) ui.els.continent.value = data.continent;
-  if (data.country) ui.els.country.value = data.country;
-  if (data.city) ui.els.city.value = data.city;
-  if (data.method) ui.els.method.value = data.method;
-}
 function saveSelection(type, value) {
   const data = storage.load() || {};
   data[type] = value;
