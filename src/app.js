@@ -1,5 +1,22 @@
 import { getCities, getCountries, getMethods, getPrayerTimes } from "./api.js";
 import { ui } from "./ui.js";
+import Storage from "./storage.js";
+
+const storage = new Storage();
+function loadStoredSelections() {
+  const data = storage.load();
+  if (!data) return;
+
+  if (data.continent) ui.els.continent.value = data.continent;
+  if (data.country) ui.els.country.value = data.country;
+  if (data.city) ui.els.city.value = data.city;
+  if (data.method) ui.els.method.value = data.method;
+}
+function saveSelection(type, value) {
+  const data = storage.load() || {};
+  data[type] = value;
+  storage.save(data);
+}
 
 async function loadCountries(continent) {
   try {
@@ -67,19 +84,62 @@ async function loadPrayerTimes() {
 //  events
 ui.onContinentChange((val) => {
   if (!val) return;
+  saveSelection("continent", val);
   loadCountries(val);
 });
 
 ui.onCountryChange((val) => {
   if (!val) return;
+  saveSelection("country", val);
   loadCities(val);
 });
 
 ui.onCityChange((val) => {
   if (!val) return;
+  saveSelection("city", val);
   loadMethods();
 });
+
 ui.onMethodChange((val) => {
   if (!val) return;
+  saveSelection("method", val);
   loadPrayerTimes();
+});
+ui.onReset(() => {
+  storage.clear();
+  ui.els.continent.value = "";
+  ui.setOptions(ui.els.country, [], "اختر...");
+  ui.setDisabled(ui.els.country, true);
+  ui.els.country.className = "";
+  ui.setOptions(ui.els.city, [], "اختر...");
+  ui.setDisabled(ui.els.city, true);
+  ui.els.city.className = "";
+  ui.setMethods(ui.els.method, {}, "اختر...");
+  ui.els.method.value = "";
+  ui.els.method.className = "";
+  ui.setTime("--", "--", "--", "--", "--");
+});
+window.addEventListener("DOMContentLoaded", async () => {
+  const data = storage.load();
+  if (!data) return;
+
+  if (data.continent) {
+    ui.els.continent.value = data.continent;
+    await loadCountries(data.continent);
+  }
+
+  if (data.country) {
+    ui.els.country.value = data.country;
+    await loadCities(data.country);
+  }
+
+  if (data.city) {
+    ui.els.city.value = data.city;
+    await loadMethods();
+  }
+
+  if (data.method) {
+    ui.els.method.value = data.method;
+    await loadPrayerTimes();
+  }
 });

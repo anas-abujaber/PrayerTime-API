@@ -72,7 +72,11 @@ function onCityChange(handler) {
 function onMethodChange(handler) {
   els.method.addEventListener("change", (e) => handler(e.target.value));
 }
+const resetBtn = document.querySelector(".reset-btn");
 
+function onReset(handler) {
+  resetBtn.addEventListener("click", handler);
+}
 export const ui = {
   els,
   setOptions,
@@ -84,4 +88,5 @@ export const ui = {
   onCountryChange,
   onCityChange,
   onMethodChange,
+  onReset,
 };
