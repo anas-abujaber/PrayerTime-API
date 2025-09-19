@@ -4,7 +4,7 @@ const els = {
   country: document.getElementById("country"),
   city: document.getElementById("city"),
   method: document.getElementById("method"),
-
+  resetBtn: document.querySelector(".reset-btn"),
   prayer: {
     fajr: document.getElementById("time-fajr"),
     dhuhr: document.getElementById("time-dhuhr"),
@@ -72,8 +72,6 @@ function onCityChange(handler) {
 function onMethodChange(handler) {
   els.method.addEventListener("change", (e) => handler(e.target.value));
 }
-const resetBtn = document.querySelector(".reset-btn");
-
 function onReset(handler) {
   resetBtn.addEventListener("click", handler);
 }
