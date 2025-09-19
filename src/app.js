@@ -1,6 +1,8 @@
 import { getCities, getCountries, getMethods, getPrayerTimes } from "./api.js";
 import { ui } from "./ui.js";
+import Storage from "./storage.js";
 
+const storage = new Storage();
 async function loadCountries(continent) {
   try {
     ui.setDisabled(ui.els.country, true);
@@ -68,18 +70,63 @@ async function loadPrayerTimes() {
 ui.onContinentChange((val) => {
   if (!val) return;
   loadCountries(val);
+  storage.save({
+    continent: val,
+    country: "",
+    city: "",
+    method: ""
+  });
 });
 
 ui.onCountryChange((val) => {
   if (!val) return;
   loadCities(val);
+  const saved = storage.load() || {};
+  storage.save({
+    ...saved,
+    country: val,
+    city: "",
+    method: ""
+  });
 });
 
 ui.onCityChange((val) => {
   if (!val) return;
   loadMethods();
+   const saved = storage.load() || {};
+  storage.save({
+    ...saved,
+    city: val
+  });
 });
 ui.onMethodChange((val) => {
   if (!val) return;
   loadPrayerTimes();
+   const saved = storage.load() || {};
+  storage.save({
+    ...saved,
+    method: val
+  });
 });
+async function restoreSelections() {
+  const saved = storage.load();
+  if (!saved) return;
+
+  if (saved.continent) {
+    ui.els.continent.value = saved.continent;
+    await loadCountries(saved.continent);
+    if (saved.country) {
+      ui.els.country.value = saved.country;
+      await loadCities(saved.country);
+      if (saved.city) {
+        ui.els.city.value = saved.city;
+        await loadMethods();
+        if (saved.method) {
+          ui.els.method.value = saved.method;
+          loadPrayerTimes();
+        }
+      }
+    }
+  }
+}
+restoreSelections();
