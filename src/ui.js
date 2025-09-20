@@ -4,7 +4,7 @@ const els = {
   country: document.getElementById("country"),
   city: document.getElementById("city"),
   method: document.getElementById("method"),
-
+  resetBtn: document.querySelector(".reset-btn"),
   prayer: {
     fajr: document.getElementById("time-fajr"),
     dhuhr: document.getElementById("time-dhuhr"),
@@ -72,6 +72,25 @@ function onCityChange(handler) {
 function onMethodChange(handler) {
   els.method.addEventListener("change", (e) => handler(e.target.value));
 }
+function onReset(handler) {
+  els.resetBtn.addEventListener("click", handler);
+}
+function resetAll() {
+  els.continent.value = "";
+  setOptions(els.country, [], "اختر...");
+  setDisabled(els.country, true);
+  els.country.className = "";
+
+  setOptions(els.city, [], "اختر...");
+  setDisabled(els.city, true);
+  els.city.className = "";
+
+  setMethods(els.method, {}, "اختر...");
+  els.method.value = "";
+  els.method.className = "";
+
+  setTime("-", "-", "-", "-", "-");
+}
 
 export const ui = {
   els,
@@ -84,4 +103,6 @@ export const ui = {
   onCountryChange,
   onCityChange,
   onMethodChange,
+  onReset,
+  resetAll,
 };
