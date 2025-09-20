@@ -73,8 +73,25 @@ function onMethodChange(handler) {
   els.method.addEventListener("change", (e) => handler(e.target.value));
 }
 function onReset(handler) {
-  resetBtn.addEventListener("click", handler);
+  els.resetBtn.addEventListener("click", handler);
 }
+function resetAll() {
+  els.continent.value = "";
+  setOptions(els.country, [], "اختر...");
+  setDisabled(els.country, true);
+  els.country.className = "";
+
+  setOptions(els.city, [], "اختر...");
+  setDisabled(els.city, true);
+  els.city.className = "";
+
+  setMethods(els.method, {}, "اختر...");
+  els.method.value = "";
+  els.method.className = "";
+
+  setTime("-", "-", "-", "-", "-");
+}
+
 export const ui = {
   els,
   setOptions,
@@ -87,4 +104,5 @@ export const ui = {
   onCityChange,
   onMethodChange,
   onReset,
+  resetAll,
 };
