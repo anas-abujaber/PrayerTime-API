@@ -98,17 +98,7 @@ ui.onMethodChange((val) => {
 });
 ui.onReset(() => {
   storage.clear();
-  ui.els.continent.value = "";
-  ui.setOptions(ui.els.country, [], "اختر...");
-  ui.setDisabled(ui.els.country, true);
-  ui.els.country.className = "";
-  ui.setOptions(ui.els.city, [], "اختر...");
-  ui.setDisabled(ui.els.city, true);
-  ui.els.city.className = "";
-  ui.setMethods(ui.els.method, {}, "اختر...");
-  ui.els.method.value = "";
-  ui.els.method.className = "";
-  ui.setTime("--", "--", "--", "--", "--");
+  ui.resetAll();
 });
 window.addEventListener("DOMContentLoaded", async () => {
   const data = storage.load();
