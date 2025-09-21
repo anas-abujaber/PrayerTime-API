@@ -94,6 +94,11 @@ body {
   font-weight: bold;
 }
 
+#countdown span{
+  font-size: 30px;
+  font-family: monospace;
+}
+
 /* ====== table ====== */
 .table {
   border-radius: 12px;

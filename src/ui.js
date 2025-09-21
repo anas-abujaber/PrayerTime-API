@@ -12,6 +12,11 @@ const els = {
     maghrib: document.getElementById("time-maghrib"),
     isha: document.getElementById("time-isha"),
   },
+  nextPrayer: {
+    name: document.getElementById("name-prayer"),
+    time: document.getElementById("time-prayer"),
+    countdown: document.querySelector("#countdown span"),
+  },
 };
 
 function setOptions(selectEl, items, placeholder = "اختر...") {
@@ -59,6 +64,13 @@ function setTime(fajr, dhuhr, asr, maghrib, isha) {
   els.prayer.maghrib.textContent = maghrib ?? "--";
   els.prayer.isha.textContent = isha ?? "--";
 }
+
+function setNextPrayer(name, time, countdown) {
+  els.nextPrayer.name.textContent = name ?? "—";
+  els.nextPrayer.time.textContent = time ?? "—";
+  els.nextPrayer.countdown.textContent = countdown ?? "—";
+}
+
 // event
 function onContinentChange(handler) {
   els.continent.addEventListener("change", (e) => handler(e.target.value));
@@ -90,6 +102,7 @@ function resetAll() {
   els.method.className = "";
 
   setTime("-", "-", "-", "-", "-");
+  setNextPrayer("—", "—", "—");
 }
 
 export const ui = {
@@ -99,6 +112,7 @@ export const ui = {
   setMessage,
   setDisabled,
   setTime,
+  setNextPrayer,
   onContinentChange,
   onCountryChange,
   onCityChange,

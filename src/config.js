@@ -8,6 +8,16 @@ export const REGIONS = [
 
 export const MAIN_PRAYERS = ["الفجر", "الظهر", "العصر", "المغرب", "العشاء"];
 
+export const PRAYER_MAPPING = {
+  Fajr: "الفجر",
+  Dhuhr: "الظهر",
+  Asr: "العصر",
+  Maghrib: "المغرب",
+  Isha: "العشاء",
+};
+
+export const PRAYER_ORDER = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
+
 export const ENDPOINTS = {
   countries: "https://restcountries.com/v3.1/region/",
 

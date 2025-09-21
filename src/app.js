@@ -1,7 +1,15 @@
 import { getCities, getCountries, getMethods, getPrayerTimes } from "./api.js";
 import { ui } from "./ui.js";
 import Storage from "./storage.js";
+import {
+  getCurrentTimeInMinutes,
+  formatCountdown,
+  getNextPrayer,
+} from "./utils.js";
+
 const storage = new Storage();
+let countdownInterval = null;
+let currentPrayerTimes = null;
 
 function saveSelection(type, value) {
   const data = storage.load() || {};
@@ -54,6 +62,35 @@ async function loadMethods() {
   }
 }
 
+function updateCountdown() {
+  if (!currentPrayerTimes) return;
+
+  const nextPrayer = getNextPrayer(currentPrayerTimes);
+  const currentTime = getCurrentTimeInMinutes();
+  const timeUntilPrayer = nextPrayer.minutes - currentTime;
+
+  ui.setNextPrayer(
+    nextPrayer.name,
+    nextPrayer.time,
+    formatCountdown(timeUntilPrayer)
+  );
+}
+
+function startCountdown() {
+  if (countdownInterval) {
+    clearInterval(countdownInterval); // to delete old intervals
+  }
+  updateCountdown();
+  countdownInterval = setInterval(updateCountdown, 1000);
+}
+
+function stopCountdown() {
+  if (countdownInterval) {
+    clearInterval(countdownInterval);
+    countdownInterval = null;
+  }
+}
+
 async function loadPrayerTimes() {
   try {
     const city = ui.els.city.value;
@@ -66,9 +103,14 @@ async function loadPrayerTimes() {
 
     ui.setTime(times.Fajr, times.Dhuhr, times.Asr, times.Maghrib, times.Isha);
 
+    currentPrayerTimes = times;
+    startCountdown();
+
     console.log("Prayer Times:", res.data.timings);
   } catch (err) {
     console.error("خطأ في جلب أوقات الصلاة:", err);
+    stopCountdown();
+    currentPrayerTimes = null;
   }
 }
 
@@ -99,6 +141,8 @@ ui.onMethodChange((val) => {
 ui.onReset(() => {
   storage.clear();
   ui.resetAll();
+  stopCountdown();
+  currentPrayerTimes = null;
 });
 window.addEventListener("DOMContentLoaded", async () => {
   const data = storage.load();
